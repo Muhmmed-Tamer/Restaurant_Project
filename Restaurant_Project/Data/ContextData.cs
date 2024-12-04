@@ -14,5 +14,9 @@ namespace Restaurant_Project.Data
 
             base.OnModelCreating(builder);
         }
+        public virtual DbSet<Table> Tables { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Food> Foods { get; set; }
+        public virtual DbSet<Chef> Chefs { get; set; } 
     }
 }

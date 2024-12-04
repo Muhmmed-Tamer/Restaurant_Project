@@ -1,38 +1,44 @@
-﻿using Restaurant_Project.Models;
+﻿using Restaurant_Project.Data;
+using Restaurant_Project.Models;
 using Restaurant_Project.Repository;
 
 namespace Restaurant_Project.Services
 {
     public class FoodRepository : IFoodRepository
     {
+        ContextData Context;
+        public FoodRepository(ContextData Context)
+        {
+            this.Context = Context;
+        }
         public void Add(Food entity)
         {
-            throw new NotImplementedException();
+            Context.Add(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Context.Remove(GetById(id));
         }
 
         public List<Food> GetAll()
         {
-            throw new NotImplementedException();
+            return Context.Foods.ToList();
         }
 
         public Food GetById(int id)
         {
-            throw new NotImplementedException();
+            return Context.Foods.FirstOrDefault(C => C.Id == id);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            Context.SaveChanges();
         }
 
         public void Update(Food entity)
         {
-            throw new NotImplementedException();
+            Context.Foods.Update(entity);
         }
     }
 }
